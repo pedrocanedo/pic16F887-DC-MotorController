@@ -27,41 +27,41 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"19 C:\Users\pedro\MPLABXProjects\rotador.X\newmain.c
-[v _I2C_init I2C_init `(v  1 e 1 0 ]
-"28
-[v _I2C_wait I2C_wait `(v  1 e 1 0 ]
-"33
-[v _I2C_start I2C_start `(v  1 e 1 0 ]
-"47
-[v _I2C_stop I2C_stop `(v  1 e 1 0 ]
-"54
-[v _I2C_write I2C_write `(v  1 e 1 0 ]
-"61
-[v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
-"80
-[v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
-"97
-[v _lcd_clear lcd_clear `(v  1 e 1 0 ]
-"109
-[v _lcd_init lcd_init `(v  1 e 1 0 ]
-"119
-[v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
-"124
-[v _adc_init adc_init `(v  1 e 1 0 ]
-"132
-[v _adc_do adc_do `(uc  1 e 1 0 ]
-"157
-[v _my_isr my_isr `II(v  1 e 1 0 ]
-"165
+"55 C:\Users\pedro\OneDrive\Documents\_Code\_github\pic16F887-DC-MotorController\MPLAB Project\rotador.X\newmain.c
 [v _main main `(v  1 e 1 0 ]
-"232
+"123
+[v _my_isr my_isr `II(v  1 e 1 0 ]
+"129
+[v _adc_do adc_do `(uc  1 e 1 0 ]
+"142
+[v _adc_init adc_init `(v  1 e 1 0 ]
+"150
+[v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
+"155
+[v _lcd_init lcd_init `(v  1 e 1 0 ]
+"163
+[v _lcd_clear lcd_clear `(v  1 e 1 0 ]
+"172
+[v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
+"189
+[v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
+"206
+[v _I2C_write I2C_write `(v  1 e 1 0 ]
+"212
+[v _I2C_stop I2C_stop `(v  1 e 1 0 ]
+"218
+[v _I2C_start I2C_start `(v  1 e 1 0 ]
+"224
+[v _I2C_wait I2C_wait `(v  1 e 1 0 ]
+"229
+[v _I2C_init I2C_init `(v  1 e 1 0 ]
+"238
 [v _medeRPM medeRPM `(v  1 e 1 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S156 . 1 `uc 1 RC0 1 0 :1:0 
+[s S38 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -71,9 +71,9 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "307
-[u S165 . 1 `S156 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES165  1 e 1 @7 ]
-[s S114 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S47 . 1 `S38 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES47  1 e 1 @7 ]
+[s S86 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -83,13 +83,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S123 . 1 `uc 1 . 1 0 :2:0 
+[s S95 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S128 . 1 `S114 1 . 1 0 `S123 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES128  1 e 1 @11 ]
+[u S100 . 1 `S86 1 . 1 0 `S95 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES100  1 e 1 @11 ]
 "772
 [v _T2CON T2CON `VEuc  1 e 1 @18 ]
 "843
@@ -104,13 +104,13 @@
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 "1245
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
-[s S60 . 1 `uc 1 ADON 1 0 :1:0 
+[s S163 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S65 . 1 `uc 1 . 1 0 :1:0 
+[s S168 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -119,17 +119,17 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S74 . 1 `uc 1 . 1 0 :1:0 
+[s S177 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S77 . 1 `uc 1 . 1 0 :1:0 
+[s S180 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S80 . 1 `S60 1 . 1 0 `S65 1 . 1 0 `S74 1 . 1 0 `S77 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES80  1 e 1 @31 ]
+[u S183 . 1 `S163 1 . 1 0 `S168 1 . 1 0 `S177 1 . 1 0 `S180 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES183  1 e 1 @31 ]
 "1346
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
-[s S177 . 1 `uc 1 PS 1 0 :3:0 
+[s S59 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -137,12 +137,12 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S184 . 1 `uc 1 PS0 1 0 :1:0 
+[s S66 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S188 . 1 `S177 1 . 1 0 `S184 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES188  1 e 1 @129 ]
+[u S70 . 1 `S59 1 . 1 0 `S66 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES70  1 e 1 @129 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
 "1540
@@ -161,7 +161,7 @@
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
-[s S32 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S214 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
@@ -171,8 +171,8 @@
 `uc 1 ANS7 1 0 :1:7 
 ]
 "3404
-[u S41 . 1 `S32 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES41  1 e 1 @392 ]
+[u S223 . 1 `S214 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES223  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "4400
@@ -181,16 +181,16 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-[s S108 . 5 `uc 1 bPDT 1 0 :1:0 
-`uc 1 bLWR 1 0 :1:1 
-`uc 1 bHRD 1 0 :1:2 
-`uc 1 bTAP 1 1 `[3]uc 1 value 3 2 ]
-"155 C:\Users\pedro\MPLABXProjects\rotador.X\newmain.c
-[v _RPMCON RPMCON `S108  1 e 5 0 ]
-"165
+[s S22 . 5 `uc 1 pulseDetected 1 0 :1:0 
+`uc 1 lowRotationDetected 1 0 :1:1 
+`uc 1 highRotationDetected 1 0 :1:2 
+`uc 1 pulseDurationTime 1 1 `[3]uc 1 rpmDisplayValue 3 2 ]
+"52 C:\Users\pedro\OneDrive\Documents\_Code\_github\pic16F887-DC-MotorController\MPLAB Project\rotador.X\newmain.c
+[v _regRotation regRotation `S22  1 e 5 0 ]
+"55
 [v _main main `(v  1 e 1 0 ]
 {
-"231
+"119
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\strcpy.c
 [v _strcpy strcpy `(*.4uc  1 e 1 0 ]
@@ -205,19 +205,19 @@
 [v strcpy@to to `*.4uc  1 a 1 4 ]
 "24
 } 0
-"232 C:\Users\pedro\MPLABXProjects\rotador.X\newmain.c
+"238 C:\Users\pedro\OneDrive\Documents\_Code\_github\pic16F887-DC-MotorController\MPLAB Project\rotador.X\newmain.c
 [v _medeRPM medeRPM `(v  1 e 1 0 ]
 {
-"235
+"241
 [v medeRPM@tpr tpr `f  1 a 4 62 ]
-"233
+"239
 [v medeRPM@aux aux `ui  1 a 2 68 ]
 [v medeRPM@bHiTAP bHiTAP `ui  1 a 2 66 ]
-"234
+"240
 [v medeRPM@centena centena `us  1 a 2 60 ]
 [v medeRPM@dezena dezena `us  1 a 2 58 ]
 [v medeRPM@unidade unidade `us  1 a 2 56 ]
-"298
+"304
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -269,17 +269,17 @@
 "8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S584 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S625 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S589 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S592 . 4 `l 1 i 4 0 `d 1 f 4 0 `S584 1 fAsBytes 4 0 `S589 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S592  1 a 4 26 ]
+[s S630 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S633 . 4 `l 1 i 4 0 `d 1 f 4 0 `S625 1 fAsBytes 4 0 `S630 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S633  1 a 4 26 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 20 ]
-[s S661 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S702 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S664 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S661 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S664  1 a 2 30 ]
+[u S705 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S702 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S705  1 a 2 30 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 25 ]
 "11
@@ -341,93 +341,93 @@
 [v ___fladd@a a `d  1 p 4 36 ]
 "237
 } 0
-"119 C:\Users\pedro\MPLABXProjects\rotador.X\newmain.c
+"150 C:\Users\pedro\OneDrive\Documents\_Code\_github\pic16F887-DC-MotorController\MPLAB Project\rotador.X\newmain.c
 [v _lcd_send_string lcd_send_string `(v  1 e 1 0 ]
 {
 [v lcd_send_string@str str `*.26uc  1 p 2 8 ]
-"122
+"153
 } 0
-"109
+"155
 [v _lcd_init lcd_init `(v  1 e 1 0 ]
 {
-"115
+"161
 } 0
-"97
+"163
 [v _lcd_clear lcd_clear `(v  1 e 1 0 ]
 {
-"103
-[v lcd_clear@i_236 i `i  1 a 2 10 ]
-"100
+"169
+[v lcd_clear@i_330 i `i  1 a 2 10 ]
+"166
 [v lcd_clear@i i `i  1 a 2 8 ]
-"105
+"170
 } 0
-"61
+"189
 [v _lcd_send_data lcd_send_data `(v  1 e 1 0 ]
 {
 [v lcd_send_data@data data `uc  1 a 1 wreg ]
-"63
+"191
 [v lcd_send_data@data_u data_u `uc  1 a 1 7 ]
 [v lcd_send_data@data_l data_l `uc  1 a 1 6 ]
-"61
+"189
 [v lcd_send_data@data data `uc  1 a 1 wreg ]
-"64
+"192
 [v lcd_send_data@data data `uc  1 a 1 5 ]
-"76
+"204
 } 0
-"80
+"172
 [v _lcd_send_cmd lcd_send_cmd `(v  1 e 1 0 ]
 {
 [v lcd_send_cmd@data data `uc  1 a 1 wreg ]
-"82
+"174
 [v lcd_send_cmd@data_u data_u `uc  1 a 1 7 ]
 [v lcd_send_cmd@data_l data_l `uc  1 a 1 6 ]
-"80
+"172
 [v lcd_send_cmd@data data `uc  1 a 1 wreg ]
-"83
+"175
 [v lcd_send_cmd@data data `uc  1 a 1 5 ]
-"95
+"187
 } 0
-"54
+"206
 [v _I2C_write I2C_write `(v  1 e 1 0 ]
 {
 [v I2C_write@data data `uc  1 a 1 wreg ]
 [v I2C_write@data data `uc  1 a 1 wreg ]
-"56
+"208
 [v I2C_write@data data `uc  1 a 1 2 ]
-"58
+"210
 } 0
-"47
+"212
 [v _I2C_stop I2C_stop `(v  1 e 1 0 ]
 {
-"51
+"216
 } 0
-"33
+"218
 [v _I2C_start I2C_start `(v  1 e 1 0 ]
 {
-"37
+"222
 } 0
-"28
+"224
 [v _I2C_wait I2C_wait `(v  1 e 1 0 ]
 {
-"31
+"227
 } 0
-"124
+"142
 [v _adc_init adc_init `(v  1 e 1 0 ]
 {
-"130
+"148
 } 0
-"132
+"129
 [v _adc_do adc_do `(uc  1 e 1 0 ]
 {
-"133
+"130
 [v adc_do@w w `uc  1 a 1 4 ]
-"143
+"140
 } 0
-"19
+"229
 [v _I2C_init I2C_init `(v  1 e 1 0 ]
 {
 [v I2C_init@clock clock `ul  1 p 4 5 ]
-"26
+"236
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -441,8 +441,8 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 6 ]
 "30
 } 0
-"157 C:\Users\pedro\MPLABXProjects\rotador.X\newmain.c
+"123 C:\Users\pedro\OneDrive\Documents\_Code\_github\pic16F887-DC-MotorController\MPLAB Project\rotador.X\newmain.c
 [v _my_isr my_isr `II(v  1 e 1 0 ]
 {
-"161
+"127
 } 0

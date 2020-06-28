@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.05\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\rotador.X.production.sym \
   --cmf=dist/default/production\rotador.X.production.cmf -z -Q16F887 \
-  -oC:\Users\pedro\AppData\Local\Temp\s8q8.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\pedro\AppData\Local\Temp\scs.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/rotador.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -pfunctab=ENTRY -ACONFIG=02007h-02008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/02100h \
   -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
-  -DENTRY=2 -k C:\Users\pedro\AppData\Local\Temp\s8q8.o \
+  -DENTRY=2 -k C:\Users\pedro\AppData\Local\Temp\scs.o \
   dist/default/production\rotador.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\pedro\AppData\Local\Temp\s8q8.o
+C:\Users\pedro\AppData\Local\Temp\scs.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2     400E       0
@@ -241,7 +241,6 @@ _OPTION_REGbits           (abs)        0081
 _PORTA                    (abs)        0005
 _PORTCbits                (abs)        0007
 _PR2                      (abs)        0092
-_RPMCON                   bssBANK0     0069
 _SSPADD                   (abs)        0093
 _SSPBUF                   (abs)        0013
 _SSPCON                   (abs)        0014
@@ -487,6 +486,7 @@ _lcd_send_string          text11       0B82
 _main                     maintext     070F
 _medeRPM                  text2        055E
 _my_isr                   text24       0B0F
+_regRotation              bssBANK0     0069
 _strcpy                   text1        0B43
 adc_do@w                  cstackCOMMON 0074
 btemp                     (abs)        007E
@@ -499,7 +499,7 @@ intlevel3                 functab      0000
 intlevel4                 functab      0000
 intlevel5                 functab      0000
 lcd_clear@i               cstackCOMMON 0078
-lcd_clear@i_236           cstackCOMMON 007A
+lcd_clear@i_330           cstackCOMMON 007A
 lcd_send_cmd@data         cstackCOMMON 0075
 lcd_send_cmd@data_l       cstackCOMMON 0076
 lcd_send_cmd@data_u       cstackCOMMON 0077
@@ -527,7 +527,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 165 in file "newmain.c"
+		line 55 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -567,14 +567,14 @@ Total ram usage:        3 bytes
 		line 8 in file "C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c90\common\strcpy.c"
  Parameters:    Size  Location     Type
   to              1    wreg     PTR unsigned char 
-		 -> RPMCON(5), 
+		 -> regRotation(5), 
   from            1    2[COMMON] PTR const unsigned char 
 		 -> STR_1(4), 
  Auto vars:     Size  Location     Type
   to              1    4[COMMON] PTR unsigned char 
-		 -> RPMCON(5), 
+		 -> regRotation(5), 
   cp              1    5[COMMON] PTR unsigned char 
-		 -> RPMCON(5), 
+		 -> regRotation(5), 
  Return value:  Size  Location     Type
                   1    wreg      PTR unsigned char 
  Registers used:
@@ -600,7 +600,7 @@ Total ram usage:        4 bytes
 
  *************** function _medeRPM *****************
  Defined at:
-		line 232 in file "newmain.c"
+		line 238 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -907,11 +907,11 @@ Total ram usage:       20 bytes
 
  *************** function _lcd_send_string *****************
  Defined at:
-		line 119 in file "newmain.c"
+		line 150 in file "newmain.c"
  Parameters:    Size  Location     Type
   str             2    8[COMMON] PTR unsigned char 
 		 -> STR_6(9), STR_5(6), STR_4(17), STR_3(17), 
-		 -> STR_2(13), RPMCON(5), 
+		 -> STR_2(13), regRotation(5), 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -939,7 +939,7 @@ Total ram usage:        2 bytes
 
  *************** function _lcd_init *****************
  Defined at:
-		line 109 in file "newmain.c"
+		line 155 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -969,7 +969,7 @@ Total ram usage:        0 bytes
 
  *************** function _lcd_clear *****************
  Defined at:
-		line 97 in file "newmain.c"
+		line 163 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1001,7 +1001,7 @@ Total ram usage:        4 bytes
 
  *************** function _lcd_send_data *****************
  Defined at:
-		line 61 in file "newmain.c"
+		line 189 in file "newmain.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1029,14 +1029,14 @@ Total ram usage:        5 bytes
 		_I2C_stop
 		_I2C_write
  This function is called by:
-		_lcd_clear
 		_lcd_send_string
+		_lcd_clear
  This function uses a non-reentrant model
 
 
  *************** function _lcd_send_cmd *****************
  Defined at:
-		line 80 in file "newmain.c"
+		line 172 in file "newmain.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1064,15 +1064,15 @@ Total ram usage:        5 bytes
 		_I2C_stop
 		_I2C_write
  This function is called by:
-		_lcd_clear
-		_lcd_init
 		_main
+		_lcd_init
+		_lcd_clear
  This function uses a non-reentrant model
 
 
  *************** function _I2C_write *****************
  Defined at:
-		line 54 in file "newmain.c"
+		line 206 in file "newmain.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -1096,14 +1096,14 @@ Total ram usage:        1 bytes
  This function calls:
 		_I2C_wait
  This function is called by:
-		_lcd_send_data
 		_lcd_send_cmd
+		_lcd_send_data
  This function uses a non-reentrant model
 
 
  *************** function _I2C_stop *****************
  Defined at:
-		line 47 in file "newmain.c"
+		line 212 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1127,14 +1127,14 @@ Total ram usage:        0 bytes
  This function calls:
 		_I2C_wait
  This function is called by:
-		_lcd_send_data
 		_lcd_send_cmd
+		_lcd_send_data
  This function uses a non-reentrant model
 
 
  *************** function _I2C_start *****************
  Defined at:
-		line 33 in file "newmain.c"
+		line 218 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1158,14 +1158,14 @@ Total ram usage:        0 bytes
  This function calls:
 		_I2C_wait
  This function is called by:
-		_lcd_send_data
 		_lcd_send_cmd
+		_lcd_send_data
  This function uses a non-reentrant model
 
 
  *************** function _I2C_wait *****************
  Defined at:
-		line 28 in file "newmain.c"
+		line 224 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1189,15 +1189,15 @@ Total ram usage:        0 bytes
  This function calls:
 		Nothing
  This function is called by:
-		_I2C_start
-		_I2C_stop
 		_I2C_write
+		_I2C_stop
+		_I2C_start
  This function uses a non-reentrant model
 
 
  *************** function _adc_init *****************
  Defined at:
-		line 124 in file "newmain.c"
+		line 142 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1227,7 +1227,7 @@ Total ram usage:        0 bytes
 
  *************** function _adc_do *****************
  Defined at:
-		line 132 in file "newmain.c"
+		line 129 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1257,7 +1257,7 @@ Total ram usage:        3 bytes
 
  *************** function _I2C_init *****************
  Defined at:
-		line 19 in file "newmain.c"
+		line 229 in file "newmain.c"
  Parameters:    Size  Location     Type
   clock           4    5[BANK0 ] unsigned long 
  Auto vars:     Size  Location     Type
@@ -1319,7 +1319,7 @@ Total ram usage:       14 bytes
 
  *************** function _my_isr *****************
  Defined at:
-		line 157 in file "newmain.c"
+		line 123 in file "newmain.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type

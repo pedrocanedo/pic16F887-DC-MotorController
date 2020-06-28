@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "newmain.c" 2
-
+# 11 "newmain.c"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2502,7 +2502,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 11 "newmain.c" 2
+# 20 "newmain.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdint.h" 3
@@ -2637,7 +2637,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 12 "newmain.c" 2
+# 21 "newmain.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2730,7 +2730,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 13 "newmain.c" 2
+# 22 "newmain.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\string.h" 1 3
 # 14 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c90\\string.h" 3
@@ -2763,155 +2763,42 @@ extern char * strchr(const char *, int);
 extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
-# 14 "newmain.c" 2
+# 23 "newmain.c" 2
 
 
 
 
 
-void I2C_init (uint32_t clock)
-{
-    SSPADD = (10000000/(4*clock))-1;
-    SSPCON = 0b00101000;
-    SSPSTAT = 0;
-    TRISC3 = 1;
-    TRISC4 = 1;
-}
 
-void I2C_wait ()
-{
-    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-}
-
-void I2C_start (void)
-{
-    I2C_wait ();
-    SSPCON2 |= 0x01;
-}
-# 47 "newmain.c"
-void I2C_stop (void)
-{
-    I2C_wait ();
-    SSPCON2 |= 0x04;
-}
-
-
-void I2C_write (uint8_t data)
-{
-    I2C_wait ();
-    SSPBUF = data;
-}
-
-
-void lcd_send_data (unsigned char data)
-{
- unsigned char data_l, data_u;
- data_l = (data<<4)&0xf0;
- data_u = data&0xf0;
-
- I2C_start();
- I2C_write (0x4E);
- I2C_write (data_u|0x0D);
- I2C_write (data_u|0x09);
-
- I2C_write (data_l|0x0D);
- I2C_write (data_l|0x09);
-
- I2C_stop();
-}
-
-
-
-void lcd_send_cmd (unsigned char data)
-{
- unsigned char data_l, data_u;
- data_l = (data<<4)&0xf0;
- data_u = data&0xf0;
-
- I2C_start();
- I2C_write (0x4E);
- I2C_write (data_u|0x0C);
- I2C_write (data_u|0x08);
-
- I2C_write (data_l|0x0C);
- I2C_write (data_l|0x08);
-
- I2C_stop();
-}
-
-void lcd_clear ()
-{
-    lcd_send_cmd (0x80);
-    for (int i=0;i<60;i++) lcd_send_data (' ');
-
-    lcd_send_cmd (0xc0);
-    for (int i=0;i<60;i++) lcd_send_data (' ');
-
-}
-
-
-
-void lcd_init (void)
-{
- lcd_send_cmd (0x02);
- lcd_send_cmd (0x28);
- lcd_send_cmd (0x0c);
- lcd_send_cmd (0x80);
-}
-
-
-
-void lcd_send_string (char *str)
-{
- while (*str) lcd_send_data (*str++);
-}
-
-void adc_init(){
-    ADCON1 = 0x80;
-    PORTA = 0x00;
-    TRISA0 = 1;
-    ANSELbits.ANS0 = 1;
-    ADCON0 = 0xc1;
-}
-
-unsigned char adc_do(){
-    unsigned char w;
-    _delay((unsigned long)((1)*(10000000/4000.0)));
-
-
-
-    ADCON0bits.GO_nDONE = 1;
-    while (ADCON0bits.GO_nDONE);
-    w = ADRESL >> 2;
-    w = (((ADRESH & 0b00000011) << 6 ) + w ) ;
-    return w;
-}
-
+void I2C_init (uint32_t);
+void I2C_wait (void);
+void I2C_start (void);
+void I2C_stop (void);
+void I2C_write (uint8_t);
+void lcd_send_data (unsigned char);
+void lcd_send_cmd (unsigned char);
+void lcd_clear (void);
+void lcd_init (void);
+void lcd_send_string (char*);
+void adc_init(void);
+unsigned char adc_do(void);
+void __attribute__((picinterrupt(("")))) my_isr(void);
+void medeRPM(void);
 
 typedef struct {
-    unsigned bPDT:1 ;
-    unsigned bLWR:1 ;
-    unsigned bHRD:1 ;
-    unsigned char bTAP;
+    unsigned pulseDetected:1 ;
+    unsigned lowRotationDetected:1 ;
+    unsigned highRotationDetected:1 ;
+    unsigned char pulseDurationTime;
+    char rpmDisplayValue[3] ;
+} RegistorRotationPerMinute ;
 
-    char value[3] ;
-} RPMCON_REG ;
+RegistorRotationPerMinute regRotation;
 
-RPMCON_REG RPMCON;
-
-void __attribute__((picinterrupt(("")))) my_isr(void){
-    RPMCON.bPDT = 1 ;
-
-    INTCONbits.INTF = 0;
-}
-
-void medeRPM(void);
 
 void main(void) {
 
-    strcpy(RPMCON.value, "xxx");
-
-
+    strcpy(regRotation.rpmDisplayValue, "xxx");
 
     TRISC = 0x00;
     TRISB = 0xFF;
@@ -2949,13 +2836,13 @@ void main(void) {
         CCPR1L = adc_do();
         medeRPM();
 
-        if (RPMCON.bLWR){
+        if (regRotation.lowRotationDetected){
         lcd_send_cmd (0x80);
         lcd_send_string("RPM ABAIXO de xx");
 
         }
         else {
-            if ((RPMCON.bHRD)){
+            if ((regRotation.highRotationDetected)){
                 lcd_send_cmd (0x80);
                 lcd_send_string("High Rotation D.");
 
@@ -2963,7 +2850,7 @@ void main(void) {
             else {
                 lcd_send_cmd (0x80);
                 lcd_send_string("RPM: ");
-                lcd_send_string(RPMCON.value);
+                lcd_send_string(regRotation.rpmDisplayValue);
                 lcd_send_string("        ");
             }
         }
@@ -2974,16 +2861,134 @@ void main(void) {
 
     return;
 }
+
+
+
+void __attribute__((picinterrupt(("")))) my_isr(){
+    regRotation.pulseDetected = 1 ;
+
+    INTCONbits.INTF = 0;
+}
+
+unsigned char adc_do(){
+    unsigned char w;
+    _delay((unsigned long)((1)*(10000000/4000.0)));
+
+
+
+    ADCON0bits.GO_nDONE = 1;
+    while (ADCON0bits.GO_nDONE);
+    w = ADRESL >> 2;
+    w = (((ADRESH & 0b00000011) << 6 ) + w ) ;
+    return w;
+}
+
+void adc_init(){
+    ADCON1 = 0x80;
+    PORTA = 0x00;
+    TRISA0 = 1;
+    ANSELbits.ANS0 = 1;
+    ADCON0 = 0xc1;
+}
+
+void lcd_send_string (char *str)
+{
+ while (*str) lcd_send_data (*str++);
+}
+
+void lcd_init (void)
+{
+ lcd_send_cmd (0x02);
+ lcd_send_cmd (0x28);
+ lcd_send_cmd (0x0c);
+ lcd_send_cmd (0x80);
+}
+
+void lcd_clear ()
+{
+    lcd_send_cmd (0x80);
+    for (int i=0;i<60;i++) lcd_send_data (' ');
+
+    lcd_send_cmd (0xc0);
+    for (int i=0;i<60;i++) lcd_send_data (' ');
+}
+
+void lcd_send_cmd (unsigned char data)
+{
+ unsigned char data_l, data_u;
+ data_l = (data<<4)&0xf0;
+ data_u = data&0xf0;
+
+ I2C_start();
+ I2C_write (0x4E);
+ I2C_write (data_u|0x0C);
+ I2C_write (data_u|0x08);
+
+ I2C_write (data_l|0x0C);
+ I2C_write (data_l|0x08);
+
+ I2C_stop();
+}
+
+void lcd_send_data (unsigned char data)
+{
+ unsigned char data_l, data_u;
+ data_l = (data<<4)&0xf0;
+ data_u = data&0xf0;
+
+ I2C_start();
+ I2C_write (0x4E);
+ I2C_write (data_u|0x0D);
+ I2C_write (data_u|0x09);
+
+ I2C_write (data_l|0x0D);
+ I2C_write (data_l|0x09);
+
+ I2C_stop();
+}
+
+void I2C_write (uint8_t data)
+{
+    I2C_wait ();
+    SSPBUF = data;
+}
+
+void I2C_stop ()
+{
+    I2C_wait ();
+    SSPCON2 |= 0x04;
+}
+
+void I2C_start ()
+{
+    I2C_wait ();
+    SSPCON2 |= 0x01;
+}
+
+void I2C_wait ()
+{
+    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+}
+
+void I2C_init (uint32_t clock)
+{
+    SSPADD = (10000000/(4*clock))-1;
+    SSPCON = 0b00101000;
+    SSPSTAT = 0;
+    TRISC3 = 1;
+    TRISC4 = 1;
+}
+
 void medeRPM(void){
     unsigned int aux = 0, bHiTAP = 0;
     unsigned short int unidade, dezena, centena;
     float tpr = 0.0;
-    RPMCON.bLWR = 0;
-    RPMCON.bPDT = 0;
-    RPMCON.bHRD = 0;
+    regRotation.lowRotationDetected = 0;
+    regRotation.pulseDetected = 0;
+    regRotation.highRotationDetected = 0;
     TMR0 = 0x00;
     INTCONbits.T0IF = 0;
-    while(RPMCON.bPDT == 0){
+    while(regRotation.pulseDetected == 0){
 
         if (INTCONbits.T0IF == 1){
             TMR0 = 0x00;
@@ -2991,17 +2996,17 @@ void medeRPM(void){
             bHiTAP += 1;
         }
         if (bHiTAP >= 37 ){
-            RPMCON.bLWR = 1;
+            regRotation.lowRotationDetected = 1;
             return;
         }
 
     }
 
-    RPMCON.bPDT = 0;
+    regRotation.pulseDetected = 0;
     TMR0 = 0x00;
     INTCONbits.T0IF = 0;
     bHiTAP = 0;
-    while(RPMCON.bPDT == 0){
+    while(regRotation.pulseDetected == 0){
 
         if (INTCONbits.T0IF == 1){
 
@@ -3010,12 +3015,12 @@ void medeRPM(void){
             bHiTAP += 1;
         }
         if (bHiTAP >= 37 ){
-            RPMCON.bLWR = 1;
+            regRotation.lowRotationDetected = 1;
             return;
         }
     }
-    RPMCON.bTAP = TMR0;
-    tpr = ((float)RPMCON.bTAP * (106.0 / 1000000.0));
+    regRotation.pulseDurationTime = TMR0;
+    tpr = ((float)regRotation.pulseDurationTime * (106.0 / 1000000.0));
     tpr += ((float)bHiTAP * (27136.0 / 1000000.0) );
     tpr = (24.0*tpr) ;
     aux = 60.0 / tpr ;
@@ -3031,9 +3036,9 @@ void medeRPM(void){
         dezena = (aux/10) - (centena*10);
         unidade = aux - (centena*100) - (dezena*10);
 
-        RPMCON.value[0] = 0x30 + centena ;
-        RPMCON.value[1] = 0x30 + dezena ;
-        RPMCON.value[2] = 0x30 + unidade;
+        regRotation.rpmDisplayValue[0] = 0x30 + centena ;
+        regRotation.rpmDisplayValue[1] = 0x30 + dezena ;
+        regRotation.rpmDisplayValue[2] = 0x30 + unidade;
 
 
 
