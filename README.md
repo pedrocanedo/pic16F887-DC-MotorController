@@ -5,5 +5,5 @@ Programas utilizados:
 - MPLAB X IDE v5.15 (para compilação do código e produção do arquivo HEX injetado no pic)
 
 ###### Esquemático do Projeto
-![Esquemático do Projeto](https://i.imgur.com/Ezi0cRC.jpg "Esquemático do Projeto")
+![Esquemático do Projeto](https://i.imgur.com/byDh7qm.jpg "Esquemático do Projeto")
 
